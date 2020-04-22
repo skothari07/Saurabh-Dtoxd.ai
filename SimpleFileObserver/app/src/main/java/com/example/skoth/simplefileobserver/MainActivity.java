@@ -2,46 +2,41 @@ package com.example.skoth.simplefileobserver;
 
 import android.app.ActivityManager;
 import android.content.Intent;
-import android.os.Environment;
-import android.os.FileObserver;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    //public File sdCard;
-    //public File imageFolder;
+
+    public ListView listView;
+    public static MyObserver fileObserver;
+    static ArrayList <String> myArrayList = new ArrayList<String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = (ListView) findViewById(R.id.listView);
+        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,myArrayList);
+        listView.setAdapter(arrayAdapter);
+        Log.i("Dekhooo", String.valueOf(myArrayList));
 
-        //sdCard = Environment.getExternalStorageDirectory();
-        //imageFolder = new File(sdCard.getAbsolutePath() + "");
-        //String path = imageFolder.toString();
-
-
-    }
-
-
-    public void start(View view){
-
-        Intent intent = new Intent(MainActivity.this , MyService.class);
+        Intent intent = new Intent(this, MyService.class);
         startService(intent);
+
+
+
     }
 
-    public void stop(View view){
-
-        Intent intent = new Intent(MainActivity.this , MyService.class);
-        stopService(intent);
-    }
 
 
 }
