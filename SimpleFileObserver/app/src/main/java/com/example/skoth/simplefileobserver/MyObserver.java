@@ -21,7 +21,7 @@ public class MyObserver extends FileObserver {
     int allMask;
 
     public MyObserver(String path) {
-        this(path, ALL_EVENTS);
+        this(path, FileObserver.ALL_EVENTS);
     }
 
     public MyObserver(String path, int mask) {
@@ -85,10 +85,6 @@ public class MyObserver extends FileObserver {
             case FileObserver.DELETE_SELF:
                 Log.d("RecursiveFileObserver", "DELETE_SELF:" + path);
                 MainActivity.myArrayList.add("DELETE_SELF:" + path);
-                break;
-            case FileObserver.MODIFY:
-                Log.d("RecursiveFileObserver", "MODIFY:" + path);
-                MainActivity.myArrayList.add("MODIFY:" + path);
                 break;
             case FileObserver.MOVED_FROM:
                 Log.d("RecursiveFileObserver", "MOVED_FROM:" + path);
